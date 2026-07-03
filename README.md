@@ -67,8 +67,6 @@ docker run -d \
 
 Now open `http://<YOUR_NAS_IP>:3000` in your browser to view the site.
 
-Optional notes:
-- If you need a sample `Dockerfile`, ask and I can add a minimal production-ready example.
-- To rebuild after editing site files, re-run `docker build` and restart the container.
+Files will need to be edited using the docker container terminal via container manager package.
 
-README updated with a cleaned, corrected workflow.
+- To rebuild after editing site files, re-run `npm run buld` and then re-run ' npm run serve'
