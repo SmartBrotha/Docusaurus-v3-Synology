@@ -79,9 +79,20 @@ docker build -t docusaurus-v3-syno .
 
 ```bash
 docker run -d \
-  --name docusaurus-v3 \
+  --name docusaurus \
+  --init \
+  --restart always \
   -p 3000:3000 \
-  docusaurus-v3-syno
+  -p 35729:35729 \
+  -v /volume1/docker/docusaurus/my-website/blog:/app/docusaurus/blog \
+  -v /volume1/docker/docusaurus/my-website/docs:/app/docusaurus/docs \
+  -v /volume1/docker/docusaurus/my-website/src:/app/docusaurus/src \
+  -v /volume1/docker/docusaurus/my-website/static:/app/docusaurus/static \
+  -v /volume1/docker/docusaurus/my-website/README.md:/app/docusaurus/README.md \
+  -v /volume1/docker/docusaurus/my-website/sidebars.js:/app/docusaurus/sidebars.js \
+  -w /app/docusaurus \
+  docusaurus-v3-syno \
+  /bin/bash -c "npm run build && npm run serve -- --host 0.0.0.0 --no-open"
 ```
 
 Now open `http://<YOUR_NAS_IP>:3000` in your browser to view the site.
