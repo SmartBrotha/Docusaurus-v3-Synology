@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  docusaurus:
+    image: docusaurus-syno
+    container_name: docusaurus
+    init: true
+    restart: always
+    expose:
+        - 3000
+        - 35729
+    ports:
+      - "3000:3000"
+      - "35729:35729"
+      
+    volumes:
+      - /volume1/docker/docusaurus/my-website/blog:/app/docusaurus/blog
+      - /volume1/docker/docusaurus/my-website/docs:/app/docusaurus/docs
+      - /volume1/docker/docusaurus/my-website/src:/app/docusaurus/src
+      - /volume1/docker/docusaurus/my-website/static:/app/docusaurus/static
+      - /volume1/docker/docusaurus/my-website/README.md:/app/docusaurus/README.md
+      - /volume1/docker/docusaurus/my-website/sidebars.js:/app/docusaurus/sidebars.js
+      
+
+
+    working_dir: /app/docusaurus
+
+    entrypoint: ["/bin/bash", "-c", "
+    
+      
+      npm run build
+
+      npm run serve -- --host 0.0.0.0 --no-open"]
