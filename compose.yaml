@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   docusaurus:
-    image: docusaurus-syno
+    image: smartbrotha/docusaurus-v3-synology:v1.0
     container_name: docusaurus
     init: true
     restart: always
