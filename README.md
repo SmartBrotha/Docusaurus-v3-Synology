@@ -90,6 +90,7 @@ docker run -d \
   -v /volume1/docker/docusaurus/my-website/static:/app/docusaurus/static \
   -v /volume1/docker/docusaurus/my-website/README.md:/app/docusaurus/README.md \
   -v /volume1/docker/docusaurus/my-website/sidebars.js:/app/docusaurus/sidebars.js \
+  -v /volume1/docker/docusaurus/my-website/docusaurus.config.js/app/docusaurus/docusaurus.config.js
   -w /app/docusaurus \
   docusaurus-v3-syno \
   /bin/bash -c "npm run build && npm run serve -- --host 0.0.0.0 --no-open"
