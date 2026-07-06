@@ -23,7 +23,13 @@ RUN npm run build
 
 # Stage 3: Serve with `docusaurus serve`.
 FROM prod AS serve
-## Expose the port that Docusaurus will run on.
+
+# Copy entrypoint script into final image
+COPY start.sh /app/docusaurus/start.sh
+RUN chmod +x /app/docusaurus/start.sh
+
 EXPOSE 3000
-## Run the production server.
-CMD ["npm", "run", "serve", "--", "--host", "0.0.0.0", "--no-open"]
+EXPOSE 35729
+
+# Replace CMD with ENTRYPOINT
+ENTRYPOINT ["/app/docusaurus/start.sh"]
